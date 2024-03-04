@@ -1,0 +1,39 @@
+import java.util.Random; // Importing the Random class to generate random numbers
+import java.util.Scanner; // Importing the Scanner class to read user input
+
+public class NumberGuessingGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // Creating a Scanner object to read input
+        Random random = new Random(); // Creating a Random object to generate random numbers
+        
+        int secretNumber = random.nextInt(100) + 1; // Generating a random number between 1 and 100
+        int maxAttempts = 5; // Setting the maximum number of attempts
+        int attempts = 0; // Initializing attempts counter
+        
+        System.out.println("Welcome to the Number Guessing Game!");
+        System.out.println("I have selected a number between 1 and 100. Try to guess it.");
+
+        while (attempts < maxAttempts) { // Loop until the maximum number of attempts is reached
+            System.out.print("Enter your guess: ");
+            int guess = scanner.nextInt(); // Reading the user's guess
+            scanner.nextLine(); // Consume newline character
+            
+            attempts++; // Incrementing the attempts counter
+
+            if (guess < secretNumber) {
+                System.out.println("Too low! Try again."); // Providing a hint if the guess is too low
+            } else if (guess > secretNumber) {
+                System.out.println("Too high! Try again."); // Providing a hint if the guess is too high
+            } else {
+                System.out.println("Congratulations! You've guessed the number (" + secretNumber + ") correctly in " + attempts + " attempts.");
+                break; // Exiting the loop if the guess is correct
+            }
+        }
+
+        if (attempts == maxAttempts && secretNumber != -1) {
+            System.out.println("Sorry, you've reached the maximum number of attempts. The correct number was " + secretNumber + ".");
+        }
+        
+        scanner.close(); // Closing the Scanner object
+    }
+}
